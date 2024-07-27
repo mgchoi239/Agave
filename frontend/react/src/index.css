@@ -1,18 +1,3 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 a {
   font-weight: 500;
   color: #646cff;
@@ -20,14 +5,6 @@ a {
 }
 a:hover {
   color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
 }
 
 h1 {
@@ -52,6 +29,69 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+table {
+  border-collapse: collapse; /* Ensures borders do not have gaps */
+  width: 100%; /* Makes the table width 100% of its container */
+}
+
+table,
+th,
+td {
+  border: 1px solid black; /* Adds a solid black border to the table, table headers, and table cells */
+}
+
+/* Table header style */
+th {
+  background-color: #f2f2f2; /* Sets the background color of table headers */
+  color: black; /* Sets the text color of table headers */
+  padding: 10px; /* Adds padding inside table headers */
+  text-align: left; /* Aligns text to the left inside table headers */
+}
+
+/* Table cell style */
+td {
+  padding: 10px; /* Adds padding inside table cells */
+  text-align: left; /* Aligns text to the left inside table cells */
+}
+
+.link {
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.add-link {
+  background-color: rgb(73, 215, 73);
+}
+
+.edit-link {
+  background-color: rgb(250, 87, 87);
+}
+
+.button {
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-button {
+  background-color: black;
 }
 
 @media (prefers-color-scheme: light) {

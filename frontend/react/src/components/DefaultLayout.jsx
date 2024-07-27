@@ -35,10 +35,10 @@ export default function DefaultLayout() {
         <Link to="/dashboard"> Dashboard</Link>
       </div>
       <Link to="/users">Users</Link>
-      <Outlet />
       <div>
         <a onClick={onLogout}>Logout</a>
       </div>
+      <Outlet />
       {notification && <div>{notification}</div>}
     </div>
   );

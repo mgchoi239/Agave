@@ -41,7 +41,9 @@ export default function Users() {
     <div>
       <div>
         <h1>Users</h1>
-        <Link to="/users/new">Add new</Link>
+        <Link className="link add-link" to="/users/new">
+          Add new
+        </Link>
       </div>
       <div>
         <table>
@@ -70,8 +72,15 @@ export default function Users() {
                   <td>{u.email}</td>
                   <td>{u.created_at}</td>
                   <td>
-                    <Link to={"/users/" + u.id}>Edit</Link>
-                    <button onClick={(ev) => onDeleteClick(u)}>Delete</button>
+                    <Link className="link edit-link" to={"/users/" + u.id}>
+                      Edit
+                    </Link>
+                    <button
+                      className="button delete-button"
+                      onClick={(ev) => onDeleteClick(u)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
