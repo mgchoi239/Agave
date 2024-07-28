@@ -90,6 +90,10 @@ td {
   border-radius: 4px;
 }
 
+.edit-button {
+  background-color: greenyellow;
+}
+
 .delete-button {
   background-color: black;
 }

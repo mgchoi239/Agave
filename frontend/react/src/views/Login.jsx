@@ -41,7 +41,8 @@ export default function Login() {
 
   return (
     <div>
-      <h1>Log into your Account</h1>
+      <h1>Login</h1>
+      <h2>Back to the site</h2>
       <form onSubmit={onSubmit}>
         <input ref={emailRef} type="email" placeholder="Email" />
         <input ref={passwordRef} type="password" placeholder="Password" />
@@ -52,7 +53,9 @@ export default function Login() {
             ))}
           </div>
         )}
-        <button onClick={onSubmit}>Login</button>
+        <button className="edit-button" onClick={onSubmit}>
+          Login
+        </button>
         <p>
           New to Agave? <Link to="/signup">Create a New Account</Link>
         </p>

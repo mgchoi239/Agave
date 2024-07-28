@@ -38,7 +38,8 @@ export default function Signup() {
 
   return (
     <div>
-      <h1>some sort of a construction pun login joke</h1>
+      <h1>Signup</h1>
+      <h2>Nail your registration</h2>
       <form onSubmit={onSubmit}>
         <input ref={nameRef} placeholder="Full Name" />
         <input ref={emailRef} type="email" placeholder="Email Address" />
