@@ -3,15 +3,18 @@ import axiosClient from "../axios-client";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
+import Pagination from "rc-pagination";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
   const { setNotification } = useStateContext();
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [page]);
 
   const onDeleteClick = (user) => {
     if (!window.confirm("Are you sure you want to delete this?")) {
@@ -23,14 +26,19 @@ export default function Users() {
     });
   };
 
+  const handlePageChange = (page) => {
+    setPage(page);
+  };
+
   const getUsers = () => {
     setLoading(true);
     axiosClient
-      .get("/users")
+      .get(`/users?page=${page}`)
       .then(({ data }) => {
         setLoading(false);
         console.log(data);
         setUsers(data.data);
+        setTotal(data.meta.total);
       })
       .catch(() => {
         setLoading(false);
@@ -66,7 +74,7 @@ export default function Users() {
           {!loading && (
             <tbody>
               {users.map((u) => (
-                <tr>
+                <tr key={u.id}>
                   <td>{u.id}</td>
                   <td>{u.name}</td>
                   <td>{u.email}</td>
@@ -87,6 +95,27 @@ export default function Users() {
             </tbody>
           )}
         </table>
+      </div>
+      <div>
+        <Pagination
+          current={page}
+          total={total}
+          pageSize={10}
+          onChange={handlePageChange}
+          className="pagination"
+          itemRender={(current, type, element) => (
+            <li>
+              <button
+                className={`page-link ${
+                  type === "page" && current === page ? "active" : ""
+                }`}
+                onClick={() => handlePageChange(current)}
+              >
+                {type === "page" ? current : element}
+              </button>
+            </li>
+          )}
+        />
       </div>
     </div>
   );

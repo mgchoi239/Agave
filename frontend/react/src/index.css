@@ -1,10 +1,7 @@
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #000000;
   text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
 }
 
 h1 {
@@ -19,16 +16,15 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: #ffffff;
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
 button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  color: #ddd;
+  background-color: #00ac49;
+  transition: background-color 0.25s;
 }
 
 table {
@@ -70,7 +66,7 @@ td {
 }
 
 .add-link {
-  background-color: rgb(73, 215, 73);
+  background-color: #077fc9;
 }
 
 .edit-link {
@@ -90,15 +86,15 @@ td {
   border-radius: 4px;
 }
 
-.edit-button {
-  background-color: greenyellow;
-}
+/* .edit-button {
+  background-color: #0069f3;
+} */
 
 .delete-button {
   background-color: black;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -109,4 +105,26 @@ td {
   button {
     background-color: #f9f9f9;
   }
+} */
+
+.pagination {
+  list-style-type: none; /* Ensure list-style is removed */
+  display: flex; /* Use flexbox to layout items horizontally */
+  gap: 5px; /* Optional: Adjust the spacing between pagination items */
+  justify-content: center; /* Center the pagination links */
+}
+
+.page-link {
+  list-style: none;
+  text-decoration: none;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  color: #00ac49;
+  cursor: pointer;
+}
+
+.page-link:hover,
+.page-link.active {
+  background-color: #00ac49;
+  color: #fff;
 }
