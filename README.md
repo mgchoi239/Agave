@@ -1,1 +1,1 @@
-# Agave
+# LEAF - Lightweight Example of Agave's Functionalities
