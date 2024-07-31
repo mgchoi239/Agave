@@ -103,7 +103,7 @@ export default function UserForm() {
               }
               placeholder="Password Confirmation"
             ></input>
-            <button>Save</button>
+            <button className="outline green-transition">Save</button>
           </form>
         )}
       </div>

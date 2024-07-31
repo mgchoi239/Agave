@@ -46,6 +46,12 @@ export default function Login() {
       <form onSubmit={onSubmit}>
         <input ref={emailRef} type="email" placeholder="Email" />
         <input ref={passwordRef} type="password" placeholder="Password" />
+        <button
+          className="edit-button outline green-transition"
+          onClick={onSubmit}
+        >
+          Login
+        </button>
         {errors && (
           <div>
             {Object.keys(errors).map((key) => (
@@ -53,9 +59,6 @@ export default function Login() {
             ))}
           </div>
         )}
-        <button className="edit-button" onClick={onSubmit}>
-          Login
-        </button>
         <p>
           New to Agave? <Link to="/signup">Create a New Account</Link>
         </p>

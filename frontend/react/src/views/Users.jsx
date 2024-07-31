@@ -30,6 +30,20 @@ export default function Users() {
     setPage(page);
   };
 
+  const itemRender = (current, type, element) => (
+    <li>
+      <button
+        className={`page-link ${
+          type === "page" ? (current === page ? "active" : "") : "nav-button"
+        }`}
+        onClick={() => type === "page" && handlePageChange(current)}
+        style={type === "page" ? {} : { pointerEvents: "none" }}
+      >
+        {type === "page" ? current : element}
+      </button>
+    </li>
+  );
+
   const getUsers = () => {
     setLoading(true);
     axiosClient
@@ -49,7 +63,7 @@ export default function Users() {
     <div>
       <div>
         <h1>Users</h1>
-        <Link className="link add-link" to="/users/new">
+        <Link className="link add-link green-transition" to="/users/new">
           Add new
         </Link>
       </div>
@@ -80,11 +94,14 @@ export default function Users() {
                   <td>{u.email}</td>
                   <td>{u.created_at}</td>
                   <td>
-                    <Link className="link edit-link" to={"/users/" + u.id}>
+                    <Link
+                      className="link edit-link green-transition"
+                      to={"/users/" + u.id}
+                    >
                       Edit
                     </Link>
                     <button
-                      className="button delete-button"
+                      className="button delete-button green-transition"
                       onClick={(ev) => onDeleteClick(u)}
                     >
                       Delete
@@ -101,20 +118,10 @@ export default function Users() {
           current={page}
           total={total}
           pageSize={10}
+          showPrevNextJumper={false}
           onChange={handlePageChange}
           className="pagination"
-          itemRender={(current, type, element) => (
-            <li>
-              <button
-                className={`page-link ${
-                  type === "page" && current === page ? "active" : ""
-                }`}
-                onClick={() => handlePageChange(current)}
-              >
-                {type === "page" ? current : element}
-              </button>
-            </li>
-          )}
+          itemRender={itemRender}
         />
       </div>
     </div>

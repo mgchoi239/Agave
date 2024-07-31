@@ -11,8 +11,8 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  border: none;
+  padding: 10px 20px;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -21,35 +21,41 @@ button {
   transition: border-color 0.25s;
 }
 
-button:hover {
-  color: #ddd;
+.outline {
+  border: 1px solid black;
+}
+
+.outline:hover {
+  border: 1px solid white;
+}
+
+.green-transition:hover {
+  color: #ffffff;
   background-color: #00ac49;
   transition: background-color 0.25s;
 }
 
 table {
-  border-collapse: collapse; /* Ensures borders do not have gaps */
-  width: 100%; /* Makes the table width 100% of its container */
+  border-collapse: collapse;
+  width: 100%;
 }
 
 table,
 th,
 td {
-  border: 1px solid black; /* Adds a solid black border to the table, table headers, and table cells */
+  border: 1px solid black;
 }
 
-/* Table header style */
 th {
-  background-color: #f2f2f2; /* Sets the background color of table headers */
-  color: black; /* Sets the text color of table headers */
-  padding: 10px; /* Adds padding inside table headers */
-  text-align: left; /* Aligns text to the left inside table headers */
+  background-color: #f2f2f2;
+  color: black;
+  padding: 10px;
+  text-align: left;
 }
 
-/* Table cell style */
 td {
-  padding: 10px; /* Adds padding inside table cells */
-  text-align: left; /* Aligns text to the left inside table cells */
+  padding: 10px;
+  text-align: left;
 }
 
 .link {
@@ -76,51 +82,22 @@ td {
 .button {
   border: none;
   color: white;
-  padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
-  border-radius: 4px;
 }
-
-/* .edit-button {
-  background-color: #0069f3;
-} */
 
 .delete-button {
   background-color: black;
 }
 
-/* @media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
-} */
-
 .pagination {
-  list-style-type: none; /* Ensure list-style is removed */
-  display: flex; /* Use flexbox to layout items horizontally */
-  gap: 5px; /* Optional: Adjust the spacing between pagination items */
-  justify-content: center; /* Center the pagination links */
-}
-
-.page-link {
-  list-style: none;
-  text-decoration: none;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  color: #00ac49;
-  cursor: pointer;
+  list-style-type: none;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
 }
 
 .page-link:hover,

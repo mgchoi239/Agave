@@ -49,6 +49,7 @@ export default function Signup() {
           type="password"
           placeholder="Password Confirmation"
         />
+        <button className="outline green-transition">Signup</button>
         {errors && (
           <div>
             {Object.keys(errors).map((key) => (
@@ -56,7 +57,6 @@ export default function Signup() {
             ))}
           </div>
         )}
-        <button>Signup</button>
         <p>
           Already have an Account? <Link to="/login">Sign in</Link>
         </p>
