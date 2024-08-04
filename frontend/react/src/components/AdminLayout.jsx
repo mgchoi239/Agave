@@ -1,15 +1,12 @@
 import { Link, Outlet, Navigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider.jsx";
 import { useEffect } from "react";
+import Dashboard from "../views/Dashboard";
 import axiosClient from "../axios-client.js";
 
 export default function DefaultLayout() {
   const { user, token, notification, setUser, setToken, setNotification } =
     useStateContext();
-
-  if (!token) {
-    return <Navigate to="/login" />;
-  }
 
   const onLogout = (ev) => {
     console.log("log out function");
@@ -22,14 +19,26 @@ export default function DefaultLayout() {
   };
 
   useEffect(() => {
-    axiosClient.get("/user").then(({ data }) => {
-      setUser(data);
-    });
-  }, []);
+    if (token) {
+      axiosClient.get("/user").then(({ data }) => {
+        setUser(data);
+      });
+    }
+  }, [token, setUser]);
 
+  if (!token) {
+    console.log("no token");
+    return <Navigate to="/login" />;
+  }
+
+  if (!user.is_admin) {
+    console.log("not admin");
+    return <Dashboard />;
+  }
+  console.log("admin");
   return (
     <div>
-      <div>Welcome {user.name} !</div>
+      <div>Welcome Admin {user.name} !</div>
       <div>
         <Link to="/dashboard"> Dashboard</Link>
       </div>

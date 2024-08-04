@@ -3,6 +3,7 @@ import Login from "./views/Login";
 import Signup from "./views/Signup";
 import Users from "./views/Users";
 import NotFound from "./views/NotFound";
+import AdminLayout from "./components/AdminLayout";
 import DefaultLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
 import Dashboard from "./views/Dashboard";
@@ -11,10 +12,10 @@ import UserForm from "./views/UserForm";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <DefaultLayout />,
+    element: <AdminLayout />,
     children: [
       {
-        path: "/",
+        path: "/admin",
         element: <Navigate to="/users" />,
       },
       {
@@ -29,8 +30,14 @@ const router = createBrowserRouter([
         path: "/users/:id",
         element: <UserForm key="userUpdate" />,
       },
+    ],
+  },
+  {
+    path: "/",
+    element: <DefaultLayout />,
+    children: [
       {
-        path: "/dashboard",
+        path: "/",
         element: <Dashboard />,
       },
     ],
@@ -49,32 +56,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/admin",
-  //   element: <AdminLayout />,
-  //   children: [
-  //     {
-  //       path: "/admin",
-  //       element: <Navigate to="/users" />,
-  //     },
-  //     {
-  //       path: "/users",
-  //       element: <Users />,
-  //     },
-  //     {
-  //       path: "/users/new",
-  //       element: <UserForm key="userCreate" />,
-  //     },
-  //     {
-  //       path: "/users/:id",
-  //       element: <UserForm key="userUpdate" />,
-  //     },
-  //     {
-  //       path: "/dashboard",
-  //       element: <Dashboard />,
-  //     },
-  //   ],
-  // },
   {
     path: "*",
     element: <NotFound />,
