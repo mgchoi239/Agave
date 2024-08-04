@@ -12,7 +12,6 @@ export default function Login() {
 
   const onSubmit = (ev) => {
     ev.preventDefault();
-    console.log("clicked");
     const payload = {
       email: emailRef.current.value,
       password: passwordRef.current.value,

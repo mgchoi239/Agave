@@ -29,10 +29,10 @@ const router = createBrowserRouter([
         path: "/users/:id",
         element: <UserForm key="userUpdate" />,
       },
-      // {
-      //   path: "/dashboard",
-      //   element: <Dashboard />,
-      // },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
     ],
   },
   {
@@ -49,6 +49,32 @@ const router = createBrowserRouter([
       },
     ],
   },
+  // {
+  //   path: "/admin",
+  //   element: <AdminLayout />,
+  //   children: [
+  //     {
+  //       path: "/admin",
+  //       element: <Navigate to="/users" />,
+  //     },
+  //     {
+  //       path: "/users",
+  //       element: <Users />,
+  //     },
+  //     {
+  //       path: "/users/new",
+  //       element: <UserForm key="userCreate" />,
+  //     },
+  //     {
+  //       path: "/users/:id",
+  //       element: <UserForm key="userUpdate" />,
+  //     },
+  //     {
+  //       path: "/dashboard",
+  //       element: <Dashboard />,
+  //     },
+  //   ],
+  // },
   {
     path: "*",
     element: <NotFound />,
