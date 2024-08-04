@@ -24,7 +24,7 @@ export default function DefaultLayout() {
         setUser(data);
       });
     }
-  }, [token, setUser]);
+  }, []);
 
   if (!token) {
     console.log("no token");
@@ -36,6 +36,7 @@ export default function DefaultLayout() {
     return <Dashboard />;
   }
   console.log("admin");
+
   return (
     <div>
       <div>Welcome Admin {user.name} !</div>

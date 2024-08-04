@@ -30,19 +30,45 @@ export default function Users() {
     setPage(page);
   };
 
-  const itemRender = (current, type, element) => (
-    <li>
-      <button
-        className={`page-link ${
-          type === "page" ? (current === page ? "active" : "") : "nav-button"
-        }`}
-        onClick={() => type === "page" && handlePageChange(current)}
-        style={type === "page" ? {} : { pointerEvents: "none" }}
-      >
-        {type === "page" ? current : element}
-      </button>
-    </li>
-  );
+  // const itemRender2 = (current, type, element) => (
+  //   <li>
+  //     <button
+  //       className={`page-link ${
+  //         type === "page" ? (current === page ? "active" : "") : "nav-button"
+  //       }`}
+  //       onClick={() => type === "page" && handlePageChange(current)}
+  //       style={type === "page" ? {} : { pointerEvents: "none" }}
+  //     >
+  //       {type === "page" ? current : element}
+  //     </button>
+  //   </li>
+  // );
+
+  const itemRender = (curr_page, type, originalElement) => {
+    if (type === "prev") {
+      return <button>Prev</button>;
+    }
+    if (type === "next") {
+      return <button>Next</button>;
+    }
+    if (type === "page") {
+      return (
+        <button
+          className={`page-link ${
+            type === "page"
+              ? curr_page === page
+                ? "active"
+                : ""
+              : "nav-button"
+          }`}
+          onClick={() => type === "page" && handlePageChange(curr_page)}
+        >
+          {curr_page}
+        </button>
+      );
+    }
+    return originalElement;
+  };
 
   const getUsers = () => {
     setLoading(true);
