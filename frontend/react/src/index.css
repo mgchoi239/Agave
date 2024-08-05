@@ -21,6 +21,15 @@ button {
   transition: border-color 0.25s;
 }
 
+.button {
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
 .outline {
   border: 1px solid black;
 }
@@ -81,16 +90,6 @@ td {
 
 .edit-link {
   background-color: rgb(250, 87, 87);
-}
-
-.button {
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  cursor: pointer;
 }
 
 .delete-button {

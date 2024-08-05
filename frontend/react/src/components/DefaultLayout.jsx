@@ -34,7 +34,6 @@ export default function DefaultLayout() {
           Dashboard
         </Link>
       </div>
-      {/* <Link to="/users">Users</Link> */}
       <div>
         <a onClick={onLogout} className="text-green-transition">
           Logout

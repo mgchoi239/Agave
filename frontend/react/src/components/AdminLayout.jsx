@@ -1,7 +1,6 @@
 import { Link, Outlet, Navigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider.jsx";
 import { useEffect } from "react";
-import Dashboard from "../views/Dashboard";
 import axiosClient from "../axios-client.js";
 import DefaultLayout from "./DefaultLayout.jsx";
 
@@ -27,24 +26,25 @@ export default function AdminLayout() {
   }, []);
 
   if (!token) {
-    console.log("no token");
     return <Navigate to="/login" />;
   }
 
   if (!user.is_admin) {
-    console.log("not admin");
     return <DefaultLayout />;
   }
-
-  console.log("admin");
 
   return (
     <div>
       <div>Welcome [Admin] {user.name} !</div>
-      {/* <div>
-        <Link to="/dashboard"> Dashboard</Link>
-      </div> */}
-      <Link to="/users" className="text-green-transition">
+      <Link to="/" className="text-green-transition">
+        Home
+      </Link>
+      <br />
+      <Link
+        to="/users"
+        state={{ isAdmin: user.is_admin }}
+        className="text-green-transition"
+      >
         Users
       </Link>
       <div>

@@ -1,12 +1,13 @@
-import axios from "axios";
 import axiosClient from "../axios-client";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import Pagination from "rc-pagination";
+import Home from "./Home";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
+  const { user } = useStateContext();
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [total, setTotal] = useState(0);
@@ -15,17 +16,24 @@ export default function Users() {
     getUsers();
   }, [page]);
 
-  const onPromoteClick = (user) => {
-    if (
-      !window.confirm("Are you sure you want to promote the user to admin?")
-    ) {
-      return;
-    }
-    console.log("clicked");
-    axiosClient.delete(`/users/${user.id}`).then(() => {
-      getUsers();
-    });
+  const getUsers = () => {
+    setLoading(true);
+    axiosClient
+      .get(`/users?page=${page}`)
+      .then(({ data }) => {
+        setLoading(false);
+        console.log(data);
+        setUsers(data.data);
+        setTotal(data.meta.total);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
+
+  if (!user.is_admin) {
+    return <Home />;
+  }
 
   const onDeleteClick = (user) => {
     if (!window.confirm("Are you sure you want to delete this?")) {
@@ -64,21 +72,6 @@ export default function Users() {
       );
     }
     return originalElement;
-  };
-
-  const getUsers = () => {
-    setLoading(true);
-    axiosClient
-      .get(`/users?page=${page}`)
-      .then(({ data }) => {
-        setLoading(false);
-        console.log(data);
-        setUsers(data.data);
-        setTotal(data.meta.total);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
   };
 
   return (
@@ -122,17 +115,11 @@ export default function Users() {
                     <Link
                       className="link edit-link green-transition"
                       to={"/users/" + u.id}
+                      state={{ isAdmin: user.is_admin }}
                       style={{ marginRight: "10px" }}
                     >
                       Edit
                     </Link>
-                    <button
-                      className="button promote-button green-transition"
-                      onClick={(ev) => onPromoteClick(u)}
-                      style={{ marginRight: "10px" }}
-                    >
-                      Promote
-                    </button>
                     <button
                       className="button delete-button green-transition"
                       onClick={(ev) => onDeleteClick(u)}

@@ -1,11 +1,10 @@
 import React from "react";
 
-function Home(props) {
+function Home() {
   return (
     <div>
       <br />
       <div>Welcome to LEAF!</div>
-      {/* <div>Use the top left menus  </div> */}
     </div>
   );
 }

@@ -1,21 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useStateContext } from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
+import Home from "./Home";
 import "../index.css";
 
 export default function UserForm() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { user } = useStateContext();
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState(null);
 
-  const [user, setUser] = useState({
+  const [editUser, setEditUser] = useState({
     id: null,
     name: "",
     email: "",
     password: "",
     password_confirmation: "",
+    is_admin: false,
   });
+
+  if (!user.is_admin) {
+    return <Home />;
+  }
 
   if (id) {
     useEffect(() => {
@@ -24,7 +32,7 @@ export default function UserForm() {
         .get(`/users/${id}`)
         .then(({ data }) => {
           setLoading(false);
-          setUser(data);
+          setEditUser(data);
         })
         .catch(() => {
           setLoading(false);
@@ -32,8 +40,14 @@ export default function UserForm() {
     }, []);
   }
 
-  const onSubmit = (ev) => {
-    ev.preventDefault();
+  const onPromoteClick = (user) => {
+    if (!window.confirm("Are you sure you want to promote user to admin?")) {
+      return;
+    }
+    setEditUser((prevUser) => ({
+      ...prevUser,
+      is_admin: true,
+    }));
     if (user.id) {
       axiosClient
         .put(`/users/${user.id}`, user)
@@ -46,9 +60,26 @@ export default function UserForm() {
             setErrors(response.data.errors);
           }
         });
+    }
+  };
+
+  const onSubmit = (ev) => {
+    ev.preventDefault();
+    if (editUser.id) {
+      axiosClient
+        .put(`/users/${editUser.id}`, editUser)
+        .then(() => {
+          navigate("/users");
+        })
+        .catch((err) => {
+          const response = err.response;
+          if (response && response.status === 422) {
+            setErrors(response.data.errors);
+          }
+        });
     } else {
       axiosClient
-        .post(`/users`, user)
+        .post(`/users`, editUser)
         .then(() => {
           navigate("/users");
         })
@@ -63,8 +94,8 @@ export default function UserForm() {
 
   return (
     <>
-      {user.id && <h1>Update User {user.name}</h1>}
-      {!user.id && <h1>New User</h1>}
+      {editUser.id && <h1>Update User {editUser.name}</h1>}
+      {!editUser.id && <h1>New User</h1>}
       <div>
         {loading && <div>Loading...</div>}
         {errors && (
@@ -77,28 +108,44 @@ export default function UserForm() {
         {!loading && (
           <form onSubmit={onSubmit}>
             <input
-              value={user.name}
-              onChange={(ev) => setUser({ ...user, name: ev.target.value })}
+              value={editUser.name}
+              onChange={(ev) =>
+                setEditUser({ ...editUser, name: ev.target.value })
+              }
               placeholder="Name"
             ></input>
             <input
               type="email"
-              value={user.email}
-              onChange={(ev) => setUser({ ...user, email: ev.target.value })}
+              value={editUser.email}
+              onChange={(ev) =>
+                setEditUser({ ...editUser, email: ev.target.value })
+              }
               placeholder="Email"
             ></input>
             <input
               type="password"
-              onChange={(ev) => setUser({ ...user, password: ev.target.value })}
+              onChange={(ev) =>
+                setEditUser({ ...editUser, password: ev.target.value })
+              }
               placeholder="Password"
             ></input>
             <input
               type="password"
               onChange={(ev) =>
-                setUser({ ...user, password_confirmation: ev.target.value })
+                setEditUser({
+                  ...editUser,
+                  password_confirmation: ev.target.value,
+                })
               }
               placeholder="Password Confirmation"
             ></input>
+            <button
+              className="button promote-button green-transition"
+              onClick={(ev) => onPromoteClick(ev)}
+              style={{ marginLeft: "10px", marginRight: "10px" }}
+            >
+              Promote
+            </button>
             <button className="outline green-transition">Save</button>
           </form>
         )}

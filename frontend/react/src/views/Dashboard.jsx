@@ -1,3 +1,8 @@
 export default function Dashboard() {
-  return <div>TO ADD</div>;
+  return (
+    <div>
+      <br />
+      API Dashboard for Customers
+    </div>
+  );
 }
