@@ -4,8 +4,7 @@ import { useEffect } from "react";
 import axiosClient from "../axios-client.js";
 
 export default function DefaultLayout() {
-  const { user, token, notification, setUser, setToken, setNotification } =
-    useStateContext();
+  const { user, token, setUser, setToken } = useStateContext();
 
   if (!token) {
     return <Navigate to="/login" />;
@@ -29,16 +28,19 @@ export default function DefaultLayout() {
 
   return (
     <div>
-      <div>Welcome {user.name} !</div>
+      <div>Welcome [User] {user.name} !</div>
       <div>
-        <Link to="/dashboard"> Dashboard</Link>
+        <Link to="/dashboard" className="text-green-transition">
+          Dashboard
+        </Link>
       </div>
-      <Link to="/users">Users</Link>
+      {/* <Link to="/users">Users</Link> */}
       <div>
-        <a onClick={onLogout}>Logout</a>
+        <a onClick={onLogout} className="text-green-transition">
+          Logout
+        </a>
       </div>
       <Outlet />
-      {notification && <div>{notification}</div>}
     </div>
   );
 }

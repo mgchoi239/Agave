@@ -57,9 +57,10 @@ export default function Signup() {
             ))}
           </div>
         )}
-        <p>
-          Already have an Account? <Link to="/login">Sign in</Link>
-        </p>
+        <p>Already have an Account?</p>
+        <Link to="/login" className="text-green-transition">
+          Sign in
+        </Link>
       </form>
     </div>
   );

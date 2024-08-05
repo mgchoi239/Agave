@@ -59,9 +59,10 @@ export default function Login() {
             ))}
           </div>
         )}
-        <p>
-          New to Agave? <Link to="/signup">Create a New Account</Link>
-        </p>
+        <p>New to LEAF?</p>
+        <Link to="/signup" className="text-green-transition">
+          Create a New Account
+        </Link>
       </form>
     </div>
   );

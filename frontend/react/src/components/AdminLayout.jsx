@@ -3,10 +3,10 @@ import { useStateContext } from "../contexts/ContextProvider.jsx";
 import { useEffect } from "react";
 import Dashboard from "../views/Dashboard";
 import axiosClient from "../axios-client.js";
+import DefaultLayout from "./DefaultLayout.jsx";
 
-export default function DefaultLayout() {
-  const { user, token, notification, setUser, setToken, setNotification } =
-    useStateContext();
+export default function AdminLayout() {
+  const { user, token, setUser, setToken } = useStateContext();
 
   const onLogout = (ev) => {
     console.log("log out function");
@@ -33,22 +33,26 @@ export default function DefaultLayout() {
 
   if (!user.is_admin) {
     console.log("not admin");
-    return <Dashboard />;
+    return <DefaultLayout />;
   }
+
   console.log("admin");
 
   return (
     <div>
-      <div>Welcome Admin {user.name} !</div>
-      <div>
+      <div>Welcome [Admin] {user.name} !</div>
+      {/* <div>
         <Link to="/dashboard"> Dashboard</Link>
-      </div>
-      <Link to="/users">Users</Link>
+      </div> */}
+      <Link to="/users" className="text-green-transition">
+        Users
+      </Link>
       <div>
-        <a onClick={onLogout}>Logout</a>
+        <a onClick={onLogout} className="text-green-transition">
+          Logout
+        </a>
       </div>
       <Outlet />
-      {notification && <div>{notification}</div>}
     </div>
   );
 }

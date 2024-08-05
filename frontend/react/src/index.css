@@ -29,6 +29,11 @@ button {
   border: 1px solid white;
 }
 
+.text-green-transition:hover {
+  color: #00ac49;
+  transition: color 0.25s;
+}
+
 .green-transition:hover {
   color: #ffffff;
   background-color: #00ac49;
@@ -66,9 +71,8 @@ td {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .add-link {
@@ -91,6 +95,10 @@ td {
 
 .delete-button {
   background-color: black;
+}
+
+.promote-button {
+  background-color: rgb(244, 157, 34);
 }
 
 .pagination {

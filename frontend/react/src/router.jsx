@@ -3,6 +3,7 @@ import Login from "./views/Login";
 import Signup from "./views/Signup";
 import Users from "./views/Users";
 import NotFound from "./views/NotFound";
+import Home from "./views/Home";
 import AdminLayout from "./components/AdminLayout";
 import DefaultLayout from "./components/DefaultLayout";
 import GuestLayout from "./components/GuestLayout";
@@ -15,8 +16,8 @@ const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       {
-        path: "/admin",
-        element: <Navigate to="/users" />,
+        path: "/",
+        element: <Home />,
       },
       {
         path: "/users",
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
         path: "/users/:id",
         element: <UserForm key="userUpdate" />,
       },
+      // {
+      //   path: "/dashboard",
+      //   element: <Dashboard />,
+      // },
     ],
   },
   {
